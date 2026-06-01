@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -216,3 +217,50 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+=======
+# ── Environnement & secrets ────────────────────────
+.env
+.env.local
+.env.production
+
+# ── Virtualenv (uv) ────────────────────────────────
+.venv/
+
+# ── Python ─────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# ── uv ─────────────────────────────────────────────
+.uv/
+
+# ── Tests ──────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.egg-info/
+
+# ── Alembic ────────────────────────────────────────
+# Ne pas ignorer versions/ — les migrations se commitent !
+
+# ── Éditeurs ───────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── OS ─────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Build ──────────────────────────────────────────
+dist/
+build/
+
+# ── DB de test ─────────────────────────────────────
+test.db
+*.sqlite3
+>>>>>>> 92fb138 (Initial structure of project)
