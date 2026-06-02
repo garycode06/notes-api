@@ -9,6 +9,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import Mapped, mapped_column
 from app.database import Base
+import uuid
 
 
 class Note(Base):
@@ -35,7 +36,7 @@ class Note(Base):
         nullable=False
     )
 
-    user_id: Mapped[int] = mapped_column(
+    user_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey(
             "users.id",
             ondelete="CASCADE"

@@ -1,6 +1,7 @@
 from fastapi import FastAPI
-app = FastAPI()
+from app.routers.auth import auth_router
+from app.routers.users import users_router
 
-@app.get('/')
-def get_all_items():
-    return {'message': 'Succesful'}
+app = FastAPI()
+app.include_router(auth_router)
+app.include_router(users_router)
