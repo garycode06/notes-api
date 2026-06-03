@@ -1,12 +1,12 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, BackgroundTasks
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
-
 from app.core.security import create_token, password_hasher, verify_password
 from app.database import get_db
 from app.models.users import User
 from app.schemas.auth import LoginRequest, RegisterRequest, Token
 from app.schemas.users import UserResponse
+from app.core.background_tasks import send_email
 
 auth_router = APIRouter(
     prefix="/auth",
@@ -51,6 +51,7 @@ def _authenticate_user(db: Session, login: str, password: str) -> User:
 )
 def register(
     user_data: RegisterRequest,
+    background_tasks: BackgroundTasks,
     db: Session = Depends(get_db),
 ):
     existing_user = db.query(User).filter(
@@ -70,7 +71,7 @@ def register(
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
-
+    background_tasks.add_task(send_email, new_user.email)
     return new_user
 
 
