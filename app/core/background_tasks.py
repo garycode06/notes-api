@@ -17,5 +17,5 @@ def config_message(dest: str):
     return message
 
 async def send_email(dest: str):
-    fm = FastMail(conf)       # conf est votre ConnectionConfig
+    fm = FastMail(conf)
     await fm.send_message(config_message(dest))
